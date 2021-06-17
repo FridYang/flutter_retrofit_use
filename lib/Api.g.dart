@@ -10,6 +10,8 @@ class _Api implements Api {
   _Api(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
     baseUrl ??= 'http://www.liulongbin.top:3005/api/v2/movie/';
+    _dio.options.connectTimeout = 5000; // 连接超时
+    _dio.options.receiveTimeout = 3000; // 接收超时
   }
 
   final Dio _dio;
