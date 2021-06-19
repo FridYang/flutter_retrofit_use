@@ -1,7 +1,8 @@
 import 'package:flutter_retrofit_use/entity/MovieDetailEntity.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-import 'entity/MovieEntity.dart';
+import 'BaseDio.dart';
+import '../entity/MovieEntity.dart';
 
 part 'Api.g.dart';
 
@@ -10,7 +11,10 @@ part 'Api.g.dart';
 // http://www.liulongbin.top:3005/api/v2/movie/coming_soon?start=0&count=1
 @RestApi(baseUrl: 'http://www.liulongbin.top:3005/api/v2/movie/')
 abstract class Api {
-  factory Api(Dio dio, {String baseUrl}) = _Api;
+  factory Api({Dio dio, String baseUrl}) {
+    dio = BaseDio.getInstance().getDio();
+    return _Api(dio, baseUrl: baseUrl);
+  }
 
   @GET('coming_soon?')
   Future<MovieEntity> getDataList(
@@ -19,6 +23,7 @@ abstract class Api {
   // 获取电影详情
   @GET('subject/{id}')
   Future<MovieDetailEntity> getMovieDetail(@Path('id') String id);
-}
 
-var client = Api(Dio());
+  @GET('subject/{id}')
+  Future<MovieDetailEntity> getMovie(@Path('id') String id);
+}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Api.dart';
+import 'http/Api.dart';
 import 'entity/MovieDetailEntity.dart';
 
 
@@ -28,8 +28,7 @@ class _MovieDetailState extends State<MovieDetail> {
   }
 
   _getMovieInfo() async {
-    MovieDetailEntity temp = await client.getMovieDetail(widget.id);
-
+    MovieDetailEntity temp = await  Api().getMovieDetail(widget.id);
     setState(() {
       _minfo = temp;
       _isloading = false;

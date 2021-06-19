@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Api.dart';
+import 'http/Api.dart';
 import 'entity/MovieEntity.dart';
 import 'ImageWidget.dart';
 import 'moviedetail.dart';
@@ -175,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _isloading = true;
     });
-    var movieEntity = await client.getDataList(_page, _pagesize);
+    var movieEntity = await Api().getDataList(_page, _pagesize);
     var list = movieEntity.subjects;
     print(_page);
     list.forEach((element) {
