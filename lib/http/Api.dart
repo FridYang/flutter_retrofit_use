@@ -11,6 +11,7 @@ part 'Api.g.dart';
 // http://www.liulongbin.top:3005/api/v2/movie/coming_soon?start=0&count=1
 @RestApi(baseUrl: 'http://www.liulongbin.top:3005/api/v2/movie/')
 abstract class Api {
+
   factory Api({Dio dio, String baseUrl}) {
     dio = BaseDio.getInstance().getDio();
     return _Api(dio, baseUrl: baseUrl);
