@@ -6,7 +6,7 @@ import 'entity/MovieDetailEntity.dart';
 
 
 class MovieDetail extends StatefulWidget {
-  MovieDetail({Key key, @required this.id, @required this.title})
+  MovieDetail({Key key, this.id, @required this.title})
       : super(key: key);
   // 电影 Id
   final String id;

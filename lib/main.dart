@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'http/Api.dart';
 import 'entity/MovieEntity.dart';
 import 'ImageWidget.dart';
 import 'moviedetail.dart';
+import 'refresh_provider_example.dart';
+import 'temp_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ProviderScope(//第二步
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +24,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter retrofit use'),
+      // home: MyHomePage(title: 'Flutter retrofit use'),
+        home: TempPage(),
     );
   }
 }
