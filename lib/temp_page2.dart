@@ -2,32 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_retrofit_use/base_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'temp_page2.dart';
+final StateProvider<int> stateProvider = StateProvider((_) => 1);
 
-final StateProvider<int> stateProvider = StateProvider((_) {
-  
-});
-
-class TempPage extends BaseWidget {
+class TempPage2 extends BaseWidget {
   @override
   BaseWidgetState getState() {
-    return _TempPage();
+    return _TempPage2();
   }
 }
 
-class _TempPage extends BaseWidgetState<TempPage> {
+class _TempPage2 extends BaseWidgetState<TempPage2> {
   @override
   Widget buildWidget(BuildContext context, ScopedReader watch) {
     return Center(
       child: GestureDetector(
-        child: Text('_TempPage'),
-        onTap: () {
-          context.read(stateProvider).state = 4;
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (BuildContext ctx) {
-            return TempPage2();
-          }));
-        },
+        child: Text('_TempPage2'),
+        onTap: () => context.read(stateProvider).state = 4,
       ),
     );
   }

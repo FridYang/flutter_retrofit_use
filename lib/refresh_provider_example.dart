@@ -7,7 +7,7 @@ final FutureProvider<List<String>> productsProvider = FutureProvider((_) async {
   /// 延时3s
   // await Future.delayed(const Duration(seconds: 3));
   var movieEntity = await Api().getDataList(1, 8);
-  var list = movieEntity.subjects;
+  List<Subjects> list = movieEntity.subjects;
 
   return List.generate(list.length, (index) => 'Item ${list[index].title}');
 });

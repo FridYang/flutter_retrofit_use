@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'http/Api.dart';
 import 'entity/MovieEntity.dart';
 import 'ImageWidget.dart';
+import 'http/BaseDio.dart';
 import 'moviedetail.dart';
 import 'refresh_provider_example.dart';
 import 'temp_page.dart';
@@ -184,18 +186,24 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _isloading = true;
     });
-    var movieEntity = await Api().getDataList(_page, _pagesize);
-    var list = movieEntity.subjects;
-    print(_page);
-    list.forEach((element) {
-      print(element.title);
-    });
-    setState(() {
-      // 合并数组
-      mlist.addAll(list);
-      _total = movieEntity.total;
-      _isloading = false;
-    });
+    try {
+      var movieEntity = await Api().getDataList(_page, _pagesize);
+      var list = movieEntity.subjects;
+      print(_page);
+      list.forEach((element) {
+        print(element.title);
+      });
+      setState(() {
+        // 合并数组
+        mlist.addAll(list);
+        _total = movieEntity.total;
+        _isloading = false;
+      });
+    }on DioError catch(e){
+      BaseDio.getInstance().getDioError(e);
+    }
+
+
   }
 
 }
